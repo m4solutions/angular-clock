@@ -1,0 +1,1 @@
+{"mixinTypes":[],"builders":{"configs":{}},"runners":{"configs":{"system:/javascript/web/simple":{"ram":128,"variables":{},"options":{}}},"default":"system:/javascript/web/simple"},"description":"Hands on example, that uses most of the important concepts of Angularjs","type":"AngularJS","attributes":{"language":["javascript"],"framework":["AngularJS"]}}
