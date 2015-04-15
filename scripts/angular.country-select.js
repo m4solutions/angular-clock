@@ -48,14 +48,15 @@ angular.module('countrySelect', [])
       replace: true,
       link: function (scope, elem, attrs) {
         if (!!attrs.ngModel) {
-          var assignCountry = $parse(attrs.ngModel).assign;
-
+          //var assignCountry = $parse(attrs.ngModel).assign;
           elem.bind('change', function (e) {
-            assignCountry(elem.val());
+           // assignCountry(elem.val());
+           
           });
 
           scope.$watch(attrs.ngModel, function (country) {
             elem.val(country);
+            scope.selectedCountry = country;
           });
         }
       }

@@ -1,11 +1,37 @@
 // MODULE
-var angularApp = angular.module('angularApp', ['ngMessages', 'ngResource']);
+var angularApp = angular.module('angularApp', ['ngMessages', 'ngResource', 'countrySelect']);
 "use strict";
 
 
 // CONTROLLERS
-angularApp.controller('mainController', ['$scope', '$log', '$filter', '$resource', '$http', '$interval', '$timeout',
-                                         function ($scope, $log, $filter, $resource, $http, $interval, $timeout) {
+angularApp.controller('mainController', ['$scope', '$log', '$filter', '$resource', '$http', '$interval', '$timeout','$window',
+                                         function ($scope, $log, $filter, $resource, $http, $interval, $timeout, $window) {
+//      function GeoTestCtrl($scope, $window) {
+    $scope.supportsGeo = $window.navigator;
+    $scope.position = null;
+    $scope.doTest1 = function() {
+        window.navigator.geolocation.getCurrentPosition(function(position) {
+            $scope.$apply(function() {
+                $scope.position = position;
+            });
+        }, function(error) {
+            alert(error);
+        });
+    };
+    
+    $scope.doTest2 = function() {
+        $window.navigator.geolocation.getCurrentPosition(function(position) {
+            $scope.$apply(function() {
+                $scope.position = position;
+            });
+        }, function(error) {
+            alert(error);
+        });
+    };
+
+//}                                       
+    $scope.doTest1();
+    $log.error($scope.position);                             
     $scope.alerts = [];                                       
                                            
     $scope.pushAlert = function (alertMessage){
@@ -47,7 +73,7 @@ angularApp.controller('mainController', ['$scope', '$log', '$filter', '$resource
       	callTimeServer();
     }
                                            
-   
+   console.log($scope.selectedCountry);
 
 }]);
 

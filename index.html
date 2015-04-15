@@ -31,9 +31,11 @@
   
   
 
-	<script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
+	<script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
 
-
+    <script src="/scripts/angular.country-select.js">
+    </script>
+    
     <script src="/scripts/clock.js">
     </script>
   
@@ -89,8 +91,12 @@ function initialize() {
         <div ng-controller="mainController">
             <form name="myForm">               
                 <div class="jumbotron">
+        <div ng-hide="supportsGeo">
+            Your browser doesn't support geolocation
+        </div>
                   <h1>{{ localTime.toLocaleDateString() }}</h1>
                   <h1>{{ localTime.toLocaleTimeString() }}</h1>
+                  <h2>{{ selectedCountry }}</h2>
                 </div>
               
               <!-- begin template -->
@@ -122,7 +128,8 @@ function initialize() {
                               <li><a href="#">Category 5</a></li> 
                             </ul>
                           </div>
-                          <input type="text" class="form-control" placeholder="What are searching for?">
+                          <country-select data-ng-model="selectedCountry" class="form-control" ></country-select>
+                         <!-- <input type="text" class="form-control" placeholder="What are searching for?">-->
                           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
                         </div>
                       </div>
